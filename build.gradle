@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "org.gradle.test-retry" version "1.1.0"
 }
 
 group = 'ru.lanit.de'
@@ -11,13 +12,17 @@ repositories {
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:6.19.1",
+            "com.codeborne:selenide:7.0.2",
             "org.junit.jupiter:junit-jupiter:5.10.1",
             'org.slf4j:slf4j-simple:2.0.9',
-            'com.github.javafaker:javafaker:1.0.2',
     )
 }
 
 test {
     useJUnitPlatform()
+    retry{
+        failOnPassedAfterRetry = true
+        maxFailures = 20
+        maxRetries = 20
+    }
 }
