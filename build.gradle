@@ -21,8 +21,8 @@ dependencies {
 test {
     useJUnitPlatform()
     retry{
-//        failOnPassedAfterRetry = true
-//        maxFailures = 20
+        failOnPassedAfterRetry = true
+       maxFailures = 20
         maxRetries = 20
     }
     testLogging {

@@ -18,7 +18,7 @@ public class DemirParamTests extends BaseTest {
     void demirSetUP(){
         demir.openHomePage();
     }
-    @ParameterizedTest(name = "На сайте Дестский мир есть страна {0}")
+    @ParameterizedTest(name = "На сайте Детсский мир есть страна {0}")
     @EnumSource(Country.class)
     @DisplayName("Проверка наличия выбора страны на главной странице магазина Детский Мир")
     @Tag("smoke")
