@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-@DisplayName("Параметризованные тесты")
+@DisplayName("Parameterized tests")
 public class ProTrackerParamTests extends BaseTest {
   ProTracker tracker = new ProTracker();
 
@@ -26,19 +26,19 @@ public class ProTrackerParamTests extends BaseTest {
     tracker.openHomePage();
   }
 
-  @ParameterizedTest(name = "Для поискового запроса {0} должен определяться герой {1}")
+  @ParameterizedTest(name = "For search query {0} the hero {1} must be defined")
   @CsvFileSource(resources = "/test_data/test_ProTracker_Hero_Resourses.csv")
   @Tag("smoke")
-  @DisplayName("Поиск героя по одному слову")
+  @DisplayName("Search for a hero by one word")
   void whenUserSearchOneWordServiceDefinesRightHero(String searchWord, String rightHero) {
     $("#search").setValue(searchWord).pressEnter();
     $(".hero-header-stats").shouldHave(text(rightHero));
   }
 
-  @ParameterizedTest(name = "По поиску игрока с ником {0} выдается список матчей игрока")
+  @ParameterizedTest(name = "Searching for a player with the nickname {0} displays a list of the player's matches")
   @ValueSource(strings = {"Dendi", "Yatoro", "Ceb", "Pure"})
   @Tag("regress")
-  @DisplayName("Поиск профиля профессионального игрока по никнейму")
+  @DisplayName("Search for a professional player's profile by nickname")
   void whenUserSearchProPlayerServiceShowThisPlayerProfile(String searchPlayer) {
     $("#search").setValue(searchPlayer).pressEnter();
     $(".wrapper-head-text").shouldHave(text("Matches"));
@@ -50,10 +50,10 @@ public class ProTrackerParamTests extends BaseTest {
                     ("All","Carry","Mid","Off","Pos 4","Pos 5"))
     );
   }
-  @ParameterizedTest(name = "В категории Top Heroes корректное написание фильтров")
+  @ParameterizedTest(name = "In the Top Heroes category, filters are written correctly")
   @MethodSource
   @Tag("regress")
-  @DisplayName("Проверка правильного написания фильтров по ролям лучших героев")
+  @DisplayName("Checking the correct spelling of filters based on the roles of the best heroes")
   void demirOfficialPageRuRightButtonsNav(List<String> currentButtons) {
     $$("#top-heroes a").filter(visible).shouldHave(texts(currentButtons));
   }

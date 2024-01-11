@@ -11,16 +11,16 @@ import pages.Demir;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-
+@DisplayName("Parameterized tests")
 public class DemirParamTests extends BaseTest {
     Demir demir = new Demir();
     @BeforeEach
     void demirSetUP(){
         demir.openHomePage();
     }
-    @ParameterizedTest(name = "На сайте Детсский мир есть страна {0}")
+    @ParameterizedTest(name = "There is a country on the Children's World website {0}")
     @EnumSource(Country.class)
-    @DisplayName("Проверка наличия выбора страны на главной странице магазина Детский Мир")
+    @DisplayName("Checking the presence of a country selection on the main page of the Detsky Mir store")
     @Tag("smoke")
     void demirHomePageHaveCountries(Country country){
     $$(".content").find(text(country.name()));
